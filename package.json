@@ -1,0 +1,8 @@
+{
+  "name": "com.superbang.library",
+  "version": "1.0.0",
+  "displayName": "Library",
+  "description": "Library",
+  "unity": "2020.3",
+  "unityRelease": "21f1"
+}
