@@ -80,6 +80,14 @@ namespace Library
         }
 
 
+        public void CreateEntityForEntityGameObject(EcsEntityGameObject entityGameObject)
+        {
+            var entity = world.NewEntity();
+            entity.Get<EntityGameObjectOwner>().EntityGameObject = entityGameObject;
+            entityGameObject.Entity = entity;
+        }
+
+
         public void RegisterEntity(EcsEntityGameObject entityGameObject)
         {
             if (entityGameObject.IndexInPool != -1)
@@ -184,9 +192,10 @@ namespace Library
         
         private void SetupEntityInEntityGameObject(EcsEntityGameObject entityGameObject)
         {
-            var entity = world.NewEntity();
-            entity.Get<EntityGameObjectOwner>().EntityGameObject = entityGameObject;
-            entityGameObject.Entity = entity;
+            if (entityGameObject.Entity == EcsEntity.Null)
+            {
+                CreateEntityForEntityGameObject(entityGameObject);
+            }
 
             foreach (var componentProvider in entityGameObject.ComponentsProviders)
             {
