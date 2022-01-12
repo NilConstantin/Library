@@ -13,7 +13,7 @@ namespace Library
 
         protected virtual void Awake()
         {
-            CollisionsService = Service<CollisionsService>.Get(true);
+            CollisionsService = Service<CollisionsService>.Get();
 
             if (isNestedCollider)
             {
