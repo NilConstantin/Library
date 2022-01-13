@@ -192,7 +192,7 @@ namespace Library
         
         private void SetupEntityInEntityGameObject(EcsEntityGameObject entityGameObject)
         {
-            if (entityGameObject.Entity == EcsEntity.Null)
+            if (entityGameObject.Entity.IsNull() || !entityGameObject.Entity.IsAlive())
             {
                 CreateEntityForEntityGameObject(entityGameObject);
             }
