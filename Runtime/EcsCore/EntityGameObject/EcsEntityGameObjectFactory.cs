@@ -11,7 +11,7 @@ namespace Library
     {
         private const int DefaultCapacity = 0;
 
-        private static readonly Vector3 HiddenPosition = new(-10000.0f, -10000.0f, -10000.0f);
+        private static readonly Vector3 HiddenPosition = new Vector3(-10000.0f, -10000.0f, -10000.0f);
 
         private PrefabsLookup prefabsLookup;
         private PoolCapacity[] poolCapacities;
