@@ -60,6 +60,20 @@ namespace Library
         }
         
         
+        public static void DrawWireDisc(Vector3 position, float radius, Color? color = null)
+        {
+            var previousColor = Handles.color;
+            if (color.HasValue)
+            {
+                Handles.color = color.Value;
+            }
+            
+            Handles.DrawWireDisc(position, Vector3.up, radius);
+
+            Handles.color = previousColor;
+        }
+        
+        
         public static void DrawWireCube(Vector3 center, Vector3 size, Color? color = null)
         {
             var previousColor = Handles.color;
