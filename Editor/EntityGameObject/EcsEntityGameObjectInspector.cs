@@ -10,10 +10,10 @@ namespace Library.Editor
         {
             DrawScriptFieldFromMonoBehaviour();
 
-            var componentsProvidersProperty = serializedObject.FindProperty(nameof(EcsEntityGameObject.ComponentsProviders));
-            EditorGUI.BeginDisabledGroup(true);
-            EditorGUILayout.PropertyField(componentsProvidersProperty);
-            EditorGUI.EndDisabledGroup();
+            // var componentsProvidersProperty = serializedObject.FindProperty(nameof(EcsEntityGameObject.ComponentsProviders));
+            // EditorGUI.BeginDisabledGroup(true);
+            // EditorGUILayout.PropertyField(componentsProvidersProperty);
+            // EditorGUI.EndDisabledGroup();
 
             var prefabIdProperty = serializedObject.FindProperty(nameof(EcsEntityGameObject.PrefabId));
             EditorGUI.BeginDisabledGroup(true);
