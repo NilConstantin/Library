@@ -4,7 +4,7 @@
 namespace Library
 {
     [Serializable]
-    public struct EntityGameObjectOwner
+    public struct EcsEntityGameObjectOwner
     {
         public EcsEntityGameObject EntityGameObject;
     }
