@@ -60,7 +60,7 @@ namespace Library
         }
         
         
-        public static void DrawWireDisc(Vector3 position, float radius, Color? color = null)
+        public static void DrawWireDisc(Vector3 position, float radius, Color? color = null, float thickness = 0.0f)
         {
             var previousColor = Handles.color;
             if (color.HasValue)
@@ -68,7 +68,7 @@ namespace Library
                 Handles.color = color.Value;
             }
             
-            Handles.DrawWireDisc(position, Vector3.up, radius);
+            Handles.DrawWireDisc(position, Vector3.up, radius, thickness);
 
             Handles.color = previousColor;
         }
