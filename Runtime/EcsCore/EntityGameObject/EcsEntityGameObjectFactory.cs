@@ -83,7 +83,7 @@ namespace Library
         public void CreateEntityForEntityGameObject(EcsEntityGameObject entityGameObject)
         {
             var entity = world.NewEntity();
-            entity.Get<EntityGameObjectOwner>().EntityGameObject = entityGameObject;
+            entity.Get<EcsEntityGameObjectRef>().Value = entityGameObject;
             entityGameObject.Entity = entity;
         }
 
