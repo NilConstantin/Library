@@ -9,11 +9,5 @@ namespace Library
 
         [AssetPath(typeof(UnityEngine.Object))]
         public string AssetPath;
-
-        public PrefabPair(int prefabId, string assetPath)
-        {
-            PrefabId = prefabId;
-            AssetPath = assetPath;
-        }
     }
 }
