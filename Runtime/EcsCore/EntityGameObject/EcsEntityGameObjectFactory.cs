@@ -44,11 +44,35 @@ namespace Library
 
         public EcsEntityGameObject Produce(int prefabId, Vector3 position)
         {
-            return Produce(prefabId, position, Quaternion.identity, Vector3.one);
+            return Produce(prefabId, null, position, Quaternion.identity, Vector3.one);
+        }
+        
+        
+        public EcsEntityGameObject Produce(int prefabId, Transform parent, Vector3 position)
+        {
+            return Produce(prefabId, parent, position, Quaternion.identity, Vector3.one);
+        }
+
+
+        public EcsEntityGameObject Produce(int prefabId, Vector3 position, Quaternion rotation)
+        {
+            return Produce(prefabId, null, position, rotation, Vector3.one);
+        }
+        
+        
+        public EcsEntityGameObject Produce(int prefabId, Transform parent, Vector3 position, Quaternion rotation)
+        {
+            return Produce(prefabId, parent, position, rotation, Vector3.one);
         }
         
 
         public EcsEntityGameObject Produce(int prefabId, Vector3 position, Quaternion rotation, Vector3 scale)
+        {
+            return Produce(prefabId, null, position, rotation, scale);
+        }
+        
+
+        public EcsEntityGameObject Produce(int prefabId, Transform parent, Vector3 position, Quaternion rotation, Vector3 scale)
         {
             //Debug.Log($"Create entity. PrefabId: {prefabId}. Frame: {Time.frameCount}");
             
@@ -66,8 +90,8 @@ namespace Library
             entityGameObject.IndexInPool = requestItemResult.IndexInPool;
 
             var transform = entityGameObject.transform;
-            transform.SetParent(root.transform);
-            
+            transform.SetParent(parent == null ? root.transform : parent);
+                
             transform.position = position;
             transform.rotation = rotation;
             transform.localScale = scale;
