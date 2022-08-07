@@ -92,8 +92,8 @@ namespace Library
             var transform = entityGameObject.transform;
             transform.SetParent(parent == null ? root.transform : parent);
                 
-            transform.position = position;
-            transform.rotation = rotation;
+            transform.localPosition = position;
+            transform.localRotation = rotation;
             transform.localScale = scale;
 
             SetupEntityInEntityGameObject(entityGameObject);
