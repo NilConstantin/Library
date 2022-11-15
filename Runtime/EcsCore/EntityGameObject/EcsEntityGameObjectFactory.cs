@@ -122,7 +122,7 @@ namespace Library
             var prefabId = entityGameObject.PrefabId;
             var gameObject = entityGameObject.gameObject;
 
-            PrepareProvidersEntityGameObject(entityGameObject);
+            PrepareProvidersAndNestedEntityGameObjects(entityGameObject);
 
             if (!prefabsLookup.Contains(entityGameObject.PrefabId))
             {
@@ -191,6 +191,11 @@ namespace Library
             }
 
             entityGameObject.Entity.Destroy();
+            
+            foreach (var nestedEcsEntityGameObject in entityGameObject.NestedEcsEntityGameObjects)
+            {
+                nestedEcsEntityGameObject.Entity.Destroy();
+            }
 
             var poolItem = pool.Items[entityGameObject.IndexInPool];
 
@@ -203,9 +208,10 @@ namespace Library
         }
 
 
-        private void PrepareProvidersEntityGameObject(EcsEntityGameObject entityGameObject)
+        private void PrepareProvidersAndNestedEntityGameObjects(EcsEntityGameObject entityGameObject)
         {
             entityGameObject.ComponentsProviders = entityGameObject.GetComponents<BaseEcsComponentProvider>();
+            entityGameObject.NestedEcsEntityGameObjects = entityGameObject.GetComponentsInChildren<EcsEntityGameObject>();
             
             foreach (var componentProvider in entityGameObject.ComponentsProviders)
             {
@@ -224,6 +230,11 @@ namespace Library
             foreach (var componentProvider in entityGameObject.ComponentsProviders)
             {
                 componentProvider.AddComponentToEntity(entityGameObject);
+            }
+
+            foreach (var nestedEcsEntityGameObject in entityGameObject.NestedEcsEntityGameObjects)
+            {
+                CreateEntityForEntityGameObject(nestedEcsEntityGameObject);
             }
         }
 
@@ -293,7 +304,7 @@ namespace Library
             }
 #endif
 
-            PrepareProvidersEntityGameObject(entityGameObject);
+            PrepareProvidersAndNestedEntityGameObjects(entityGameObject);
 
             entityGameObject.IndexInPool = indexInPool;
 
