@@ -8,7 +8,6 @@ namespace Library
     public class EcsEntityGameObject : MonoBehaviour
     {
         public BaseEcsComponentProvider[] ComponentsProviders = Array.Empty<BaseEcsComponentProvider>();
-        public EcsEntityGameObject[] NestedEcsEntityGameObjects = Array.Empty<EcsEntityGameObject>();
         public int PrefabId = -1;
         public EcsEntity Entity = default;
         public int IndexInPool = -1;

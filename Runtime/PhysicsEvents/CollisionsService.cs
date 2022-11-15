@@ -27,10 +27,23 @@ namespace Library
             var isEntityGameObject = incomingGameObject.TryGetComponent(out EcsEntityGameObject incomingEntityGameObject);
             if (isEntityGameObject)
             {
-                var eventEntity = world.NewEntity();
-                ref var eventComponent = ref eventEntity.Get<TriggerEnterEvent>();
-                eventComponent.SourceEntity = sourceEntity;
-                eventComponent.IncomingEntity = incomingEntityGameObject.Entity;
+                world.NewEntity().Get<TriggerEnterEvent>() = new TriggerEnterEvent
+                {
+                    SourceEntity = sourceEntity,
+                    IncomingEntity = incomingEntityGameObject.Entity
+                };
+            }
+            else 
+            {
+                var isTriggerEnterMediator = incomingGameObject.TryGetComponent(out TriggerEnterMediator triggerEnterMediator);
+                if (isTriggerEnterMediator)
+                {
+                    world.NewEntity().Get<TriggerEnterEvent>() = new TriggerEnterEvent
+                    {
+                        SourceEntity = sourceEntity,
+                        IncomingEntity = triggerEnterMediator.EntityGameObject.Entity
+                    };
+                }
             }
         }
         
@@ -40,10 +53,11 @@ namespace Library
             var isEntityGameObject = incomingGameObject.TryGetComponent(out EcsEntityGameObject incomingEntityGameObject);
             if (isEntityGameObject)
             {
-                var eventEntity = world.NewEntity();
-                ref var eventComponent = ref eventEntity.Get<TriggerStayEvent>();
-                eventComponent.SourceEntity = sourceEntity;
-                eventComponent.IncomingEntity = incomingEntityGameObject.Entity;
+                world.NewEntity().Get<TriggerStayEvent>() = new TriggerStayEvent
+                {
+                    SourceEntity = sourceEntity,
+                    IncomingEntity = incomingEntityGameObject.Entity
+                };
             }
         }
         
@@ -53,10 +67,11 @@ namespace Library
             var isEntityGameObject = incomingGameObject.TryGetComponent(out EcsEntityGameObject incomingEntityGameObject);
             if (isEntityGameObject)
             {
-                var eventEntity = world.NewEntity();
-                ref var eventComponent = ref eventEntity.Get<TriggerExitEvent>();
-                eventComponent.SourceEntity = sourceEntity;
-                eventComponent.IncomingEntity = incomingEntityGameObject.Entity;
+                world.NewEntity().Get<TriggerExitEvent>() = new TriggerExitEvent
+                {
+                    SourceEntity = sourceEntity,
+                    IncomingEntity = incomingEntityGameObject.Entity
+                };
             }
         }
         
@@ -66,10 +81,11 @@ namespace Library
             var isEntityGameObject = incomingGameObject.TryGetComponent(out EcsEntityGameObject incomingEntityGameObject);
             if (isEntityGameObject)
             {
-                var eventEntity = world.NewEntity();
-                ref var eventComponent = ref eventEntity.Get<CollisionEnterEvent>();
-                eventComponent.SourceEntity = sourceEntity;
-                eventComponent.IncomingEntity = incomingEntityGameObject.Entity;
+                world.NewEntity().Get<CollisionEnterEvent>() = new CollisionEnterEvent
+                {
+                    SourceEntity = sourceEntity,
+                    IncomingEntity = incomingEntityGameObject.Entity
+                };
             }
         }
 
@@ -79,10 +95,11 @@ namespace Library
             var isEntityGameObject = incomingGameObject.TryGetComponent(out EcsEntityGameObject incomingEntityGameObject);
             if (isEntityGameObject)
             {
-                var eventEntity = world.NewEntity();
-                ref var eventComponent = ref eventEntity.Get<CollisionStayEvent>();
-                eventComponent.SourceEntity = sourceEntity;
-                eventComponent.IncomingEntity = incomingEntityGameObject.Entity;
+                world.NewEntity().Get<CollisionStayEvent>() = new CollisionStayEvent
+                {
+                    SourceEntity = sourceEntity,
+                    IncomingEntity = incomingEntityGameObject.Entity
+                };
             }
         }
 
@@ -92,10 +109,11 @@ namespace Library
             var isEntityGameObject = incomingGameObject.TryGetComponent(out EcsEntityGameObject incomingEntityGameObject);
             if (isEntityGameObject)
             {
-                var eventEntity = world.NewEntity();
-                ref var eventComponent = ref eventEntity.Get<CollisionExitEvent>();
-                eventComponent.SourceEntity = sourceEntity;
-                eventComponent.IncomingEntity = incomingEntityGameObject.Entity;
+                world.NewEntity().Get<CollisionExitEvent>() = new CollisionExitEvent
+                {
+                    SourceEntity = sourceEntity,
+                    IncomingEntity = incomingEntityGameObject.Entity
+                };
             }
         }
     }

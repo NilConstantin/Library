@@ -191,11 +191,6 @@ namespace Library
             }
 
             entityGameObject.Entity.Destroy();
-            
-            foreach (var nestedEcsEntityGameObject in entityGameObject.NestedEcsEntityGameObjects)
-            {
-                nestedEcsEntityGameObject.Entity.Destroy();
-            }
 
             var poolItem = pool.Items[entityGameObject.IndexInPool];
 
@@ -211,8 +206,7 @@ namespace Library
         private void PrepareProvidersAndNestedEntityGameObjects(EcsEntityGameObject entityGameObject)
         {
             entityGameObject.ComponentsProviders = entityGameObject.GetComponents<BaseEcsComponentProvider>();
-            entityGameObject.NestedEcsEntityGameObjects = entityGameObject.GetComponentsOnlyInChildren<EcsEntityGameObject>();
-            
+
             foreach (var componentProvider in entityGameObject.ComponentsProviders)
             {
                 componentProvider.Prepare(entityGameObject);
@@ -230,11 +224,6 @@ namespace Library
             foreach (var componentProvider in entityGameObject.ComponentsProviders)
             {
                 componentProvider.AddComponentToEntity(entityGameObject);
-            }
-
-            foreach (var nestedEcsEntityGameObject in entityGameObject.NestedEcsEntityGameObjects)
-            {
-                CreateEntityForEntityGameObject(nestedEcsEntityGameObject);
             }
         }
 
