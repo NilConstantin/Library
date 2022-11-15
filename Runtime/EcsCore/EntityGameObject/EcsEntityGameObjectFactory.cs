@@ -211,15 +211,15 @@ namespace Library
         private void PrepareProvidersAndNestedEntityGameObjects(EcsEntityGameObject entityGameObject)
         {
             entityGameObject.ComponentsProviders = entityGameObject.GetComponents<BaseEcsComponentProvider>();
-            entityGameObject.NestedEcsEntityGameObjects = entityGameObject.GetComponentsInChildren<EcsEntityGameObject>();
+            entityGameObject.NestedEcsEntityGameObjects = entityGameObject.GetComponentsOnlyInChildren<EcsEntityGameObject>();
             
             foreach (var componentProvider in entityGameObject.ComponentsProviders)
             {
                 componentProvider.Prepare(entityGameObject);
             }
         }
-        
-        
+
+
         private void SetupEntityInEntityGameObject(EcsEntityGameObject entityGameObject)
         {
             if (entityGameObject.Entity.IsNull() || !entityGameObject.Entity.IsAlive())
