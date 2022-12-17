@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -7,20 +8,21 @@ namespace Library
     [CreateAssetMenu(fileName = "PrefabsLookup", menuName = "Ecs/Prefabs Loockup")]
     public class PrefabsLookup : ScriptableObject
     {
-        [SerializeField] private PrefabsGroup[] groups = new PrefabsGroup[0];
+        public string PathToPrefabsIdsFile;
+        public string PrefabsIdsFileNamespace;
+        
+        [SerializeField] private PrefabsGroup[] groups = Array.Empty<PrefabsGroup>();
 
-        private Dictionary<int, string> assetPathes = new Dictionary<int, string>();
+        private readonly Dictionary<int, string> assetPaths = new Dictionary<int, string>();
 
 
         public void Init()
         {
-            for (var i = 0; i < groups.Length; i++)
+            foreach (var group in groups)
             {
-                var group = groups[i];
-                for (var j = 0; j < group.Pairs.Length; j++)
+                foreach (var pair in group.Pairs)
                 {
-                    var pair = group.Pairs[j];
-                    assetPathes.Add(pair.PrefabId, pair.AssetPath);
+                    assetPaths.Add(pair.PrefabId, pair.AssetPath);
                 }
             }
         }
@@ -28,16 +30,10 @@ namespace Library
 
         public bool Contains(int prefabId)
         {
-            return assetPathes.ContainsKey(prefabId);
+            return assetPaths.ContainsKey(prefabId);
         }
 
 
-        public string this[int key] 
-        {
-            get
-            {
-                return assetPathes[key];
-            }
-        }
+        public string this[int key] => assetPaths[key];
     }
 }

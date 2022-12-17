@@ -12,7 +12,7 @@ namespace Library
         public PrefabsGroup(string name)
         {
             Name = name;
-            Pairs = new PrefabPair[0];
+            Pairs = Array.Empty<PrefabPair>();
         }
     }
 }
