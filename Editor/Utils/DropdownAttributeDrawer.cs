@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Library.Editor
 {
-    [CustomPropertyDrawer(typeof(EnumAttribute))]
-    public class EnumAttributeDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(DropdownAttribute))]
+    public class DropdownAttributeDrawer : PropertyDrawer
     {
-        private EnumAttribute enumAttribute => ((EnumAttribute)attribute);
+        private DropdownAttribute DropdownAttribute => ((DropdownAttribute)attribute);
 
         private int index;
         
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var list = enumAttribute.ListForEnum;
+            var list = DropdownAttribute.ListForEnum;
 
             if (list != null)
             {

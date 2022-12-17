@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Library.Editor
 {
-    [CustomPropertyDrawer(typeof(EnumArrayAttribute))]
-    public class EnumArrayDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(DropdownArrayAttribute))]
+    public class DropdownArrayDrawer : PropertyDrawer
     {
-        EnumArrayAttribute NamedAttribute
+        DropdownArrayAttribute NamedAttribute
         {
-            get { return ((EnumArrayAttribute)attribute); }
+            get { return ((DropdownArrayAttribute)attribute); }
         }
 
 

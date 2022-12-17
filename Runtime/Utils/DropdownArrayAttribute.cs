@@ -4,12 +4,12 @@ using System;
 
 namespace Library
 {
-    public class EnumArrayAttribute : PropertyAttribute
+    public class DropdownArrayAttribute : PropertyAttribute
     {
         public string PropertyName;
         public Type EnumType;
 
-        public EnumArrayAttribute(string propertyName, Type enumType)
+        public DropdownArrayAttribute(string propertyName, Type enumType)
         {
             PropertyName = propertyName;
             EnumType = enumType;

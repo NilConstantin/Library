@@ -6,15 +6,15 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public class EnumAttribute : PropertyAttribute
+    public class DropdownAttribute : PropertyAttribute
     {
-        private EnumItem[] listForEnum;
+        private DropdownItem[] listForEnum;
 
         private readonly Type listSourceClass;
         private readonly string listSourceMethod;
 
 
-        public EnumItem[] ListForEnum
+        public DropdownItem[] ListForEnum
         {
             get
             {
@@ -35,12 +35,12 @@ namespace Library
         }
 
 
-        EnumAttribute()
+        DropdownAttribute()
         {
         }
 
 
-        public EnumAttribute(Type sourceClassConstFields)
+        public DropdownAttribute(Type sourceClassConstFields)
         {
             if (sourceClassConstFields != null)
             {
@@ -52,7 +52,7 @@ namespace Library
         }
 
 
-        public EnumAttribute(Type sourceClassList, string sourceMethodList)
+        public DropdownAttribute(Type sourceClassList, string sourceMethodList)
         {
             if (sourceClassList != null)
             {
@@ -99,7 +99,7 @@ namespace Library
 
         void UpdateMethod()
         {
-            if (listSourceClass.GetMethod(listSourceMethod)?.Invoke(null, null) is List<EnumItem> list)
+            if (listSourceClass.GetMethod(listSourceMethod)?.Invoke(null, null) is List<DropdownItem> list)
             {
                 listForEnum = list.ToArray();
             }
@@ -108,14 +108,14 @@ namespace Library
 
         void UpdateFields()
         {
-            var list = new List<EnumItem>();
+            var list = new List<DropdownItem>();
             foreach (FieldInfo field in listSourceClass.GetFields(BindingFlags.Public | BindingFlags.Static))
             {
                 if (field.IsLiteral && !field.IsInitOnly)
                 {
                     var fieldValue = field.GetRawConstantValue();
                     var valuesGroup = field.GetCustomAttribute<ValuesGroupAttribute>();
-                    list.Add(new EnumItem(field.Name, fieldValue.ToString(), valuesGroup?.GroupName ?? string.Empty));
+                    list.Add(new DropdownItem(field.Name, fieldValue.ToString(), valuesGroup?.GroupName ?? string.Empty));
                 }
             }
             listForEnum = list.ToArray();

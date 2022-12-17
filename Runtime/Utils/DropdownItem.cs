@@ -1,13 +1,13 @@
 ﻿namespace Library
 {
-    public class EnumItem
+    public class DropdownItem
     {
         public string Key;
         public string Value;
         public string GroupName;
         
         
-        public EnumItem(string key, string value, string groupName)
+        public DropdownItem(string key, string value, string groupName)
         {
             Key = key;
             Value = value;
