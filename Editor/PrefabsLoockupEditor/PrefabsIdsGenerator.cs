@@ -27,6 +27,10 @@ namespace Library.Editor
                 {
                     stringBuilder.AppendFormat($"        [ValuesGroup(\"{prefabsGroup.Name}\")]{Environment.NewLine}");
                     var fileName = Path.GetFileNameWithoutExtension(prefabPair.AssetPath);
+                    if (string.IsNullOrEmpty(fileName))
+                    {
+                        fileName = "None";
+                    }
                     stringBuilder.AppendFormat($"        public const int {fileName} = {prefabPair.PrefabId};{Environment.NewLine}");
                 }
             }
