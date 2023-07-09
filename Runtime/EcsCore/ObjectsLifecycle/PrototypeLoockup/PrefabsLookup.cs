@@ -18,6 +18,7 @@ namespace Library
 
         public void Init()
         {
+            assetPaths.Clear();
             foreach (var group in groups)
             {
                 foreach (var pair in group.Pairs)
